@@ -15,25 +15,13 @@ const update = () => {
 
 const draw = () => {
   ctx.beginPath();
-  ctx.arc(
-    mouseX,
-    mouseY,
-    50,
-    0,
-    2 * Math.PI
-  );
+  ctx.arc(mouseX, mouseY, 50, 0, 2 * Math.PI);
   ctx.fillStyle = "orange";
   ctx.fill();
 }
 
 const animate = () => {
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   update();
   draw();
   requestAnimationFrame(animate);

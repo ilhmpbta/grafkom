@@ -3,12 +3,7 @@ const ctx = canvas.getContext("2d");
 
 // Draw a rectangle
 ctx.fillStyle = "blue";
-ctx.fillRect(
-  100,
-  100,
-  200,
-  120
-);
+ctx.fillRect(100, 100, 200, 120);
 
 
 // Draw a line
@@ -21,13 +16,7 @@ ctx.stroke();
 
 // Draw a ciecle
 ctx.beginPath();
-ctx.arc(
-  450,
-  350,
-  75,
-  0,
-  Math.PI * 2
-);
+ctx.arc(450, 350, 75, 0, Math.PI * 2 );
 ctx.fillStyle = "red";
 ctx.fill();
 

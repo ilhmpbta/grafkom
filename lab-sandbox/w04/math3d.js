@@ -16,11 +16,7 @@ export const Vec3 = {
   },
 
   normalize(v) {
-    const length = Math.hypot(
-      v[0],
-      v[1],
-      v[2]
-    );
+    const length = Math.hypot(v[0], v[1], v[2]);
 
     if (length < 0.000001) {
       return [0, 0, 0];
@@ -34,11 +30,7 @@ export const Vec3 = {
   },
 
   dot(a, b) {
-    return (
-      a[0] * b[0] +
-      a[1] * b[1] +
-      a[2] * b[2]
-    );
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   }
 };
 
@@ -121,31 +113,13 @@ export const Mat4 = {
       Vec3.cross(forward, up)
     );
 
-    const correctedUp = Vec3.cross(
-      right,
-      forward
-    );
+    const correctedUp = Vec3.cross(right, forward);
 
     return new Float32Array([
-      right[0],
-      correctedUp[0],
-      -forward[0],
-      0,
-
-      right[1],
-      correctedUp[1],
-      -forward[1],
-      0,
-
-      right[2],
-      correctedUp[2],
-      -forward[2],
-      0,
-
-      -Vec3.dot(right, position),
-      -Vec3.dot(correctedUp, position),
-      Vec3.dot(forward, position),
-      1
+      right[0], correctedUp[0], -forward[0], 0,
+      right[1], correctedUp[1], -forward[1], 0,
+      right[2], correctedUp[2], -forward[2], 0,
+      -Vec3.dot(right, position), -Vec3.dot(correctedUp, position), Vec3.dot(forward, position), 1
     ]);
   },
 
@@ -154,49 +128,19 @@ export const Mat4 = {
     const rangeInv = 1 / (near - far);
 
     return new Float32Array([
-      f / aspect,
-      0,
-      0,
-      0,
-
-      0,
-      f,
-      0,
-      0,
-
-      0,
-      0,
-      (near + far) * rangeInv,
-      -1,
-
-      0,
-      0,
-      2 * near * far * rangeInv,
-      0
+      f / aspect, 0, 0, 0,
+      0, f, 0, 0,
+      0, 0, (near + far) * rangeInv, -1,
+      0, 0, 2 * near * far * rangeInv, 0
     ]);
   },
 
   orthographic(left, right, bottom, top, near, far) {
     return new Float32Array([
-      2 / (right - left),
-      0,
-      0,
-      0,
-
-      0,
-      2 / (top - bottom),
-      0,
-      0,
-
-      0,
-      0,
-      -2 / (far - near),
-      0,
-
-      -(right + left) / (right - left),
-      -(top + bottom) / (top - bottom),
-      -(far + near) / (far - near),
-      1
+      2 / (right - left), 0, 0, 0,
+      0, 2 / (top - bottom), 0, 0,
+      0, 0, -2 / (far - near), 0,
+      -(right + left) / (right - left), -(top + bottom) / (top - bottom), -(far + near) / (far - near), 1
     ]);
   }
 };
